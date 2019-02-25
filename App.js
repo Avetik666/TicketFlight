@@ -9,74 +9,111 @@
 
 import React, {Component} from 'react';
 import {
-  Platform,
-  StyleSheet,
-  Text, //Component to handle <Text> elements
-  View  //Straightforward, handles <View>
+    StyleSheet,
+    Text,
+    View,
+    Button,
+    TouchableOpacity
 } from 'react-native';
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
+import { logger } from 'react-native-logger';
 export default class App extends Component {
-  constructor(){
-    super()
-    this.state ={}
-    this.state.customeStyle={
-      color:'red'
+    constructor(){
+        super();
     }
-    setInterval(()=>{
-      if(this.state.customeStyle.color === 'red'){
-      this.setState({
-        customeStyle:{
-          color:'green'
+
+    render() {
+      let rows =[]
+      let nums =[[1,2,3],[4,5,6],[7,8,9],[0,0,'=']]
+      for(let i = 0; i < 4; i++) {
+        let row = [];
+        for(let j = 0; j < 3; j++) {
+          row.push(<TouchableOpacity style={styles.btn}>
+              <Text style={styles.btnText}>{nums[i][j]}</Text>
+            </TouchableOpacity>);
         }
-        })
-      } else {
-      this.setState({
-        customeStyle:{
-          color:'red'
-          }
-        })
+        rows.push(<View style={styles.row}>{row}</View>);
       }
-      },700)
 
-  }
-
-  render() {
-    return (
-      <View style={styles.container}>
-      <Text style={[styles.welcome,this.state.customeStyle]}>
-        Hello World!
-        Dear Avetik your first steps are promising keep it in the same way.
-        </Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
-    );
-  }
+      let operations = ['+', '-', '*', '/']
+      let ops = []
+      for(let i = 0; i < 4; i++){
+        ops.push(<TouchableOpacity style={styles.btn}>
+          <Text style={styles.btnText}>{operations[i]}</Text>
+          </TouchableOpacity>)
+      }
+        return (
+          <View style={styles.container}>
+                <View style={styles.result}>
+                    <Text style={styles.resultText}>11x11</Text>
+                </View>
+                <View style={styles.calculation}>
+                    <Text style={styles.calculationText}>123</Text>
+                </View>
+                <View style={styles.buttons}>
+                    <View style={styles.numbers}>
+                        {rows}
+                    </View>
+                    <View style={styles.operations}>
+                      {ops}
+                    </View>
+                </View>
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-    color:'blue'
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    container: {
+        flex: 1
+    },
+    resultText:{
+        fontSize:40,
+        color:'white'
+    },
+    calculationText:{
+        fontSize:32,
+        color:'white'
+    },
+    row:{
+        flexDirection: 'row',
+        flex: 1,
+        justifyContent: 'space-around',
+        alignItems:'center'
+    },
+    result: {
+        flex: 2,
+        backgroundColor: 'red',
+        justifyContent: 'center',
+        alignItems:'flex-end'
+    },
+    calculation: {
+        flex: 1,
+        backgroundColor: 'green',
+        justifyContent: 'center',
+        alignItems:'flex-end'
+    },
+    buttons: {
+        flexGrow: 7,
+        flexDirection:'row'
+    },
+    numbers: {
+        flex:3,
+        backgroundColor: 'yellow'
+    },
+    btn:{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'stretch',
+        backgroundColor: 'purple'
+    },
+    btnText:{
+      fontSize:35
+    },
+    operations: {
+        flex:1,
+        justifyContent: 'space-around',
+        alignItems: 'stretch',
+        backgroundColor: 'black'
+    }
 });
