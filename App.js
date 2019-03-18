@@ -16,7 +16,8 @@ import {
     CheckBox,
     View,
     Button,
-    TouchableOpacity
+    TouchableOpacity,
+    Image
 } from 'react-native';
 // import { CheckBox } from 'react-native-elements';
 import { logger } from 'react-native-logger';
@@ -25,6 +26,51 @@ import {
   createAppContainer
 } from 'react-navigation';
  // = createStackNavigator({...});
+const img = './app/assets/images.png';
+class Test extends Component {
+ render(){
+   return (
+           <View style={styles.container}>
+           <Text style={styles.welcome}>This is Test component</Text>
+           <Button onPress={() => this.props.navigation.navigate('Home')} title = 'Go to Home'></Button>
+           </View>
+         );
+     }
+}
+
+class Home extends Component {
+ render(){
+   return (
+           <View style={styles.container}>
+             <Image source={require(img) }/>
+             <Text style={styles.welcome}>TicketFlight</Text>
+             <TextInput style ={{fontSize:20} } placeholder = "Flight number" />
+             <CheckBox title = 'Passenger' />
+             <Button onPress={() => this.props.navigation.navigate('Test')} title = 'Continue'></Button>
+           </View>
+         );
+     }
+}
+
+ const styles = StyleSheet.create({
+     container: {
+         flex: 1,
+         justifyContent: 'center',
+         alignItems: 'center',
+         backgroundColor: 'white'
+     },
+     welcome:{
+       fontSize: 20,
+       textAlign: 'left',
+       margin: 10
+     },
+     firstPage:{
+       fontSize: 20,
+       textAlign: 'left',
+       margin: 10
+     }
+ });
+
 
 export default class App extends Component {
 render(){
@@ -32,52 +78,11 @@ render(){
     }
 }
 
-class Test extends Component {
-render(){
-  return (
-          <View style={styles.container}>
-            <Text style={styles.welcome}>TicketFlight</Text>
-            <TextInput style ={{fontSize:20} } placeholder = "Flight number" />
-            <CheckBox title = 'Passenger' />
-              <Button onPress={() => this.props.navigation.navigate('Home')} title = 'Go to Home'></Button>
-          </View>
-        );
-    }
-}
-// <Button onPress={() => this.props.navigation.navigate('Test')} title = 'Go to Test'></Button>
 
-class Home extends Component {
-render(){
-  return (
-          <View style={styles.container}>
-              <Text style={styles.welcome}>This is Home component</Text>
-              <Button onPress={() => this.props.navigation.navigate('Test')} title = 'Go to Test'></Button>
-          </View>
-        );
-    }
-}
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'white'
-    },
-    welcome:{
-      fontSize: 20,
-      textAlign: 'center',
-      margin: 10
-    },
-    firstPage:{
-      fontSize: 20,
-      textAlign: 'left',
-      margin: 10
-    }
-});
 const MainNavigator = createStackNavigator ({
-   Test: Test,
-   Home: Home
+   Home: Home,
+   Test: Test
+
   });
 const AppContainer = createAppContainer(MainNavigator);
 
