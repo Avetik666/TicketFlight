@@ -1,76 +1,13 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- * @lint-ignore-every XPLATJSCOPYRIGHT1
- */
-
 import React, { Component } from "react";
-import {
-    Platform,
-    StyleSheet,
-    Text,
-    TextInput,
-    CheckBox,
-    View,
-    Button,
-    TouchableOpacity,
-    Image
-} from 'react-native';
-// import { CheckBox } from 'react-native-elements';
-import { logger } from 'react-native-logger';
 import {
   createStackNavigator,
   createAppContainer
 } from 'react-navigation';
+import LogIn from './app/components/Log in';
+import Home from './app/components/Home';
+
  // = createStackNavigator({...});
 const img = './app/assets/images.png';
-class Test extends Component {
- render(){
-   return (
-           <View style={styles.container}>
-           <Text style={styles.welcome}>This is Test component</Text>
-           <Button onPress={() => this.props.navigation.navigate('Home')} title = 'Go to Home'></Button>
-           </View>
-         );
-     }
-}
-
-class Home extends Component {
- render(){
-   return (
-           <View style={styles.container}>
-             <Image source={require(img) }/>
-             <Text style={styles.welcome}>TicketFlight</Text>
-             <TextInput style ={{fontSize:20} } placeholder = "Flight number" />
-             <CheckBox title = 'Passenger' />
-             <Button onPress={() => this.props.navigation.navigate('Test')} title = 'Continue'></Button>
-           </View>
-         );
-     }
-}
-
- const styles = StyleSheet.create({
-     container: {
-         flex: 1,
-         justifyContent: 'center',
-         alignItems: 'center',
-         backgroundColor: 'white'
-     },
-     welcome:{
-       fontSize: 20,
-       textAlign: 'left',
-       margin: 10
-     },
-     firstPage:{
-       fontSize: 20,
-       textAlign: 'left',
-       margin: 10
-     }
- });
-
 
 export default class App extends Component {
 render(){
@@ -80,8 +17,10 @@ render(){
 
 
 const MainNavigator = createStackNavigator ({
-   Home: Home,
-   Test: Test
+   LogIn: LogIn,
+   Home: Home
+
+   // Test: Test
 
   });
 const AppContainer = createAppContainer(MainNavigator);
