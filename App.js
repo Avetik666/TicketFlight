@@ -10,9 +10,9 @@ import Home from './app/components/Home';
 const img = './app/assets/images.png';
 
 export default class App extends Component {
-render(){
-  return <AppContainer />;
-    }
+  render(){
+    return <AppContainer />;
+  }
 }
 
 

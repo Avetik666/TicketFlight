@@ -15,9 +15,18 @@ import {
   createStackNavigator,
   createAppContainer
 } from 'react-navigation';
+import { registerToFlight } from '../../api/flights.api'
 
 const img = '../../assets/images.png';
 class LogIn extends Component {
+  state = {
+    flightId: ''
+  };
+
+  continueButtonClickedHandler = () => {
+    const { flightId } = this.state;
+    registerToFlight(flightId);
+  };
 
  render(){
    return (
