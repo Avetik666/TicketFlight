@@ -5,9 +5,10 @@ import {
 } from 'react-navigation';
 import LogIn from './app/components/Log in';
 import Home from './app/components/Home';
-
- // = createStackNavigator({...});
+// import {pushNotifications} from './app/PushNotifications';
 const img = './app/assets/images.png';
+
+// pushNotifications.configure();
 
 export default class App extends Component {
   render(){
@@ -19,9 +20,6 @@ export default class App extends Component {
 const MainNavigator = createStackNavigator ({
    LogIn: LogIn,
    Home: Home
-
-   // Test: Test
-
   });
 const AppContainer = createAppContainer(MainNavigator);
 

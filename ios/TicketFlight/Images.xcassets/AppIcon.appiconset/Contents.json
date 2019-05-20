@@ -6,6 +6,12 @@
       "scale" : "2x"
     },
     {
+      "size" : "20x20",
+      "idiom" : "iphone",
+      "filename" : "images.png",
+      "scale" : "3x"
+    },
+    {
       "idiom" : "iphone",
       "size" : "20x20",
       "scale" : "3x"
@@ -31,8 +37,9 @@
       "scale" : "3x"
     },
     {
-      "idiom" : "iphone",
       "size" : "60x60",
+      "idiom" : "iphone",
+      "filename" : "117435-120x120.jpg",
       "scale" : "2x"
     },
     {
